@@ -1,7 +1,6 @@
 package com.spring.rest.spring_rest;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;

@@ -11,30 +11,30 @@ import org.springframework.stereotype.Repository;
 public class FleetService {
 
 	@PersistenceContext
-	EntityManager fleetEm;
+	EntityManager em;
 
 	public List<Fleet> getAllFleets() {
-		TypedQuery<Fleet> query = fleetEm.createNamedQuery(Fleet.FIND_ALL_FLEETS, Fleet.class);
+		TypedQuery<Fleet> query = em.createNamedQuery(Fleet.FIND_ALL_FLEETS, Fleet.class);
 		List<Fleet> results = query.getResultList();
 		return results;
 	}
 
 	public Fleet getFleet(String id) {
-		return fleetEm.find(Fleet.class, id);
+		return em.find(Fleet.class, id);
 	}
 
 	@Transactional
 	public void deleteFleet(String id) {
-		fleetEm.remove(fleetEm.find(Fleet.class, id));
+		em.remove(em.find(Fleet.class, id));
 	}
 
 	@Transactional
 	public void addFleet(Fleet c) {
-		fleetEm.persist(c);
+		em.persist(c);
 	}
 
 	@Transactional
 	public void updateFleet(Fleet f) {
-		fleetEm.merge(f);
+		em.merge(f);
 	}
 }
