@@ -24,12 +24,17 @@ public class ClientService {
 	}
 	
 	@Transactional
-	public void deleteClient(int id) {
+	public void deleteClient(String id) {
 		em.remove(em.find(Client.class, id));
 	}
 
 	@Transactional
 	public void addClient(Client c) {
 		em.persist(c);
+	}
+	
+	@Transactional
+	public void updateEmployee(Client c){
+		em.merge(c);
 	}
 }
