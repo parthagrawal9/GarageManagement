@@ -23,6 +23,10 @@ public class RestTestController {
 	private DriverService driverService;
 	@Autowired
 	private OrdersService ordersService;
+	@Autowired
+	private MaintenanceService maintenanceService;
+	@Autowired
+	private RtoTaxService rtoTaxService;
 
 	// CLIENT SERVICE
 	@RequestMapping("/clients")
@@ -47,7 +51,7 @@ public class RestTestController {
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/client/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<StandardResponse> updateClient(@RequestBody(required = true) Client client) {
 		clientService.updateEmployee(client);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -168,4 +172,62 @@ public class RestTestController {
 		ordersService.updateOrder(order);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
+	
+	// MAINTENANCE SERVICE
+		@RequestMapping("/maintenance")
+		public List<Maintenance> getAllMaintenanceData() {
+			return maintenanceService.getallMaintenance();
+		}
+
+		@RequestMapping("/maintenance/{id}")
+		public ResponseEntity<Maintenance> getMaintenance(@PathVariable("id") String id) {
+			return new ResponseEntity<Maintenance>(maintenanceService.getMaintenance(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/maintenance/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteMaintenanceById(@PathVariable("id") String id) {
+			maintenanceService.deleteMaintenance(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/maintenance", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addMaintenance(@RequestBody(required = true) Maintenance maintenance) {
+			maintenanceService.addMaintenance(maintenance);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/maintenance/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateMaintenance(@RequestBody(required = true) Maintenance maintenance) {
+			maintenanceService.updateMaintenance(maintenance);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+		
+		// RTO TAX SERVICE
+		@RequestMapping("/rtotax")
+		public List<Rto> getAllRtoTaxData() {
+			return rtoTaxService.getallRtoTax();
+		}
+
+		@RequestMapping("/rtotax/{id}")
+		public ResponseEntity<Rto> getRtoTax(@PathVariable("id") String id) {
+			return new ResponseEntity<Rto>(rtoTaxService.getRtoTax(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/rtotax/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteRtoTaxById(@PathVariable("id") String id) {
+			rtoTaxService.deleteRtoTax(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/rtotax", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addRtoTax(@RequestBody(required = true) Rto rtoTax) {
+			rtoTaxService.addRtoTax(rtoTax);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/rtotax/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateRtoTax(@RequestBody(required = true) Rto rtoTax) {
+			rtoTaxService.updateRtoTax(rtoTax);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
 }
