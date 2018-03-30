@@ -27,6 +27,8 @@ public class RestTestController {
 	private MaintenanceService maintenanceService;
 	@Autowired
 	private RtoTaxService rtoTaxService;
+	@Autowired
+	private CityService cityService;
 
 	// CLIENT SERVICE
 	@RequestMapping("/clients")
@@ -228,6 +230,35 @@ public class RestTestController {
 		@RequestMapping(value = "/rtotax/{id}", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateRtoTax(@RequestBody(required = true) Rto rtoTax) {
 			rtoTaxService.updateRtoTax(rtoTax);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+		
+		// CITY SERVICE
+		@RequestMapping("/cities")
+		public List<City> getAllCityData() {
+			return cityService.getallCities();
+		}
+
+		@RequestMapping("/cities/{id}")
+		public ResponseEntity<City> getCity(@PathVariable("id") String id) {
+			return new ResponseEntity<City>(cityService.getCity(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/cities/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteCityById(@PathVariable("id") String id) {
+			cityService.deleteCity(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/cities", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addCity(@RequestBody(required = true) City city) {
+			cityService.addCity(city);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/cities/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateCity(@RequestBody(required = true) City city) {
+			cityService.updateCity(city);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 }
