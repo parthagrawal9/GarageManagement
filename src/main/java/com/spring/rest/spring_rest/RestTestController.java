@@ -29,6 +29,8 @@ public class RestTestController {
 	private RtoTaxService rtoTaxService;
 	@Autowired
 	private CityService cityService;
+	@Autowired 
+	private DistanceService distanceService;
 
 	// CLIENT SERVICE
 	@RequestMapping("/clients")
@@ -259,6 +261,35 @@ public class RestTestController {
 		@RequestMapping(value = "/cities/{id}", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateCity(@RequestBody(required = true) City city) {
 			cityService.updateCity(city);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+		
+		// DISTANCE SERVICE
+		@RequestMapping("/distances")
+		public List<Distance> getAllDistanceData() {
+			return distanceService.getallDistance();
+		}
+
+		@RequestMapping("/distances/{id}")
+		public ResponseEntity<Distance> getDistance(@PathVariable("id") String id) {
+			return new ResponseEntity<Distance>(distanceService.getDistance(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/distances/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteDistanceById(@PathVariable("id") String id) {
+			distanceService.deleteDistance(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/distances", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addDistance(@RequestBody(required = true) Distance distance) {
+			distanceService.addDistance(distance);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/distances/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateDistance(@RequestBody(required = true) Distance distance) {
+			distanceService.updateD(distance);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 }
