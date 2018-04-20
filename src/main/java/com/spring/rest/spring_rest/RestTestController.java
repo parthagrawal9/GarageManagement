@@ -32,6 +32,7 @@ public class RestTestController {
 	@Autowired 
 	private DistanceService distanceService;
 
+
 	// CLIENT SERVICE
 	@RequestMapping("/clients")
 	public List<Client> getAllClientData() {
@@ -72,6 +73,16 @@ public class RestTestController {
 		return new ResponseEntity<Fleet>(fleetService.getFleet(id), HttpStatus.OK);
 	}
 
+	@RequestMapping("/fleets/total")
+	public int getFleetCount() {
+		return fleetService.getFleetCount();
+	}
+	
+	@RequestMapping("/fleets/totalprice")
+	public long getAllFleetPrice() {
+		return fleetService.getFleetPrice();
+	}
+	
 	@RequestMapping(value = "/fleets/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<StandardResponse> deleteFleetById(@PathVariable("id") String id) {
 		fleetService.deleteFleet(id);
@@ -130,6 +141,11 @@ public class RestTestController {
 		return new ResponseEntity<Driver>(driverService.getDriver(id), HttpStatus.OK);
 	}
 
+	@RequestMapping("/drivers/total")
+	public int getDriverCount() {
+		return driverService.getDriverCount();
+	}
+	
 	@RequestMapping(value = "/drivers/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<StandardResponse> deleteDriverById(@PathVariable("id") String id) {
 		driverService.deleteDriver(id);
@@ -292,4 +308,7 @@ public class RestTestController {
 			distanceService.updateD(distance);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
+		
+		//Reports
+		
 }

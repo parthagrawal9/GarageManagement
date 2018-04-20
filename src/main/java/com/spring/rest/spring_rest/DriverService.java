@@ -19,6 +19,10 @@ public class DriverService {
 		return results;
 	}
 	
+	public int getDriverCount(){
+		return ((Number)em.createNamedQuery(Driver.FIND_TOTAL_DRIVERS).getSingleResult()).intValue();
+	}
+	
 	public Driver getDriver(String id){
 		return em.find(Driver.class, id);
 	}

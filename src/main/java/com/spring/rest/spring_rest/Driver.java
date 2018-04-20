@@ -4,13 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name=Driver.FIND_ALL_DRIVERS,query="select d from Driver d")
+@NamedQueries({
+	@NamedQuery(name=Driver.FIND_ALL_DRIVERS,query="select d from Driver d"),
+	@NamedQuery(name = Driver.FIND_TOTAL_DRIVERS, query = "select COUNT(d) from Driver d"),
+})
 public class Driver {
 
 	protected static final String FIND_ALL_DRIVERS = "find_all_drivers";
+	protected static final String FIND_TOTAL_DRIVERS = "find_total_drivers";
 	
 	@Id
 	private String Did;

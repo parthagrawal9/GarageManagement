@@ -19,6 +19,14 @@ public class FleetService {
 		return results;
 	}
 
+	public int getFleetCount(){
+		return ((Number)em.createNamedQuery(Fleet.FIND_TOTAL_FLEETS).getSingleResult()).intValue();
+	}
+	
+	public long getFleetPrice(){
+		return ((Number)em.createNamedQuery(Fleet.FIND_TOTAL_FLEETS_PRICE).getSingleResult()).intValue();
+	}
+	
 	public Fleet getFleet(String id) {
 		return em.find(Fleet.class, id);
 	}

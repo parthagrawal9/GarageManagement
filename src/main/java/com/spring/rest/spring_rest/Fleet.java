@@ -3,13 +3,20 @@ package com.spring.rest.spring_rest;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = Fleet.FIND_ALL_FLEETS, query = "select f from Fleet f")
+@NamedQueries({
+	@NamedQuery(name = Fleet.FIND_ALL_FLEETS, query = "select f from Fleet f"),
+	@NamedQuery(name = Fleet.FIND_TOTAL_FLEETS, query = "select COUNT(f) from Fleet f"),
+	@NamedQuery(name = Fleet.FIND_TOTAL_FLEETS_PRICE, query = "select SUM(f.price) from Fleet f")
+})
 public class Fleet {
 	
 	protected static final String FIND_ALL_FLEETS = "find_all_fleets";
+	protected static final String FIND_TOTAL_FLEETS = "find_total_fleets";
+	protected static final String FIND_TOTAL_FLEETS_PRICE = "find_total_fleets_price";
 	
 	@Id
 	private String fid;
