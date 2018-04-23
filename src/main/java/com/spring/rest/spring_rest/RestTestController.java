@@ -1,5 +1,8 @@
 package com.spring.rest.spring_rest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +34,10 @@ public class RestTestController {
 	private CityService cityService;
 	@Autowired 
 	private DistanceService distanceService;
+	@Autowired
+	private DeliveryService deliveryService;
+	@Autowired 
+	private TripExpenseService tripExpenseService; 
 
 
 	// CLIENT SERVICE
@@ -71,16 +78,6 @@ public class RestTestController {
 	@RequestMapping("/fleets/{id}")
 	public ResponseEntity<Fleet> getFleet(@PathVariable("id") String id) {
 		return new ResponseEntity<Fleet>(fleetService.getFleet(id), HttpStatus.OK);
-	}
-
-	@RequestMapping("/fleets/total")
-	public int getFleetCount() {
-		return fleetService.getFleetCount();
-	}
-	
-	@RequestMapping("/fleets/totalprice")
-	public long getAllFleetPrice() {
-		return fleetService.getFleetPrice();
 	}
 	
 	@RequestMapping(value = "/fleets/{id}", method = RequestMethod.DELETE)
@@ -139,11 +136,6 @@ public class RestTestController {
 	@RequestMapping("/drivers/{id}")
 	public ResponseEntity<Driver> getDriver(@PathVariable("id") String id) {
 		return new ResponseEntity<Driver>(driverService.getDriver(id), HttpStatus.OK);
-	}
-
-	@RequestMapping("/drivers/total")
-	public int getDriverCount() {
-		return driverService.getDriverCount();
 	}
 	
 	@RequestMapping(value = "/drivers/{id}", method = RequestMethod.DELETE)
@@ -309,6 +301,122 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 		
-		//Reports
+		//DELIVERY
+		@RequestMapping("/deliveries")
+		public List<Delivery> getAllDeliveries() {
+			return deliveryService.getallDelivery();
+		}
+
+		@RequestMapping("/deliveries/{id}")
+		public ResponseEntity<Delivery> getDelivery(@PathVariable("id") String id) {
+			return new ResponseEntity<Delivery>(deliveryService.getDelivery(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/deliveries/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteDeliveryById(@PathVariable("id") String id) {
+			deliveryService.deleteDelivery(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/deliveries", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addDelivery(@RequestBody(required = true) Delivery delivery) {
+			deliveryService.addDelivery(delivery);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/deliveries/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateDelivery(@RequestBody(required = true) Delivery delivery) {
+			deliveryService.updateDelivery(delivery);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
 		
+		//TRIP EXPENSE
+		
+		@RequestMapping("/tripexpenses")
+		public List<TripExpense> getAllTripExpense() {
+			return tripExpenseService.getallTripExpense();
+		}
+
+		@RequestMapping("/tripexpenses/{id}")
+		public ResponseEntity<TripExpense> getTripExpense(@PathVariable("id") String id) {
+			return new ResponseEntity<TripExpense>(tripExpenseService.getTripExpense(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/tripexpenses/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteTripExpenseById(@PathVariable("id") String id) {
+			tripExpenseService.deleteTripExpense(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/tripexpenses", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addTripExpense(@RequestBody(required = true) TripExpense tripExpense) {
+			tripExpenseService.addTripExpense(tripExpense);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/tripexpenses/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateTripExpense(@RequestBody(required = true) TripExpense tripExpense) {
+			tripExpenseService.updateTripExpense(tripExpense);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+		
+		//REPORTS STATS
+		@RequestMapping("/fleets/total")
+		public int getFleetCount() {
+			return fleetService.getFleetCount();
+		}
+		
+		@RequestMapping("/fleets/totalprice")
+		public long getAllFleetPrice() {
+			return fleetService.getFleetPrice();
+		}
+		
+		@RequestMapping("/drivers/total")
+		public int getDriverCount() {
+			return driverService.getDriverCount();
+		}
+		
+		@RequestMapping("/deliveries/{status}")
+		public int getCompletedPendingDeliveryCount(@PathVariable("status") String status) {
+			return deliveryService.getCompletedPendingCount(status);
+		}
+		
+		@RequestMapping("/orders/kmstravelled")
+		public int getTotalKmsTravelled() {
+			return ordersService.getTotalDistanceCompleted();
+		}
+		
+		//MAIN REPORTS
+		@RequestMapping("/orders/reports/month/{date1}/{date2}")
+		public List<Orders> getOrdersPerMonth(@PathVariable("date1") String d1,@PathVariable("date2") String d2 ) throws ParseException {
+			Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(d1);
+			Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(d2);
+			return ordersService.getOrdersPerMonth(date1, date2);
+		}
+		
+		@RequestMapping("/orders/reports/client/{id}")
+		public List<Orders> getOrdersPerMonth(@PathVariable("id") String cid){
+			return ordersService.getOrdersPerClient(cid);
+		}
+		
+		@RequestMapping("/orders/reports/fleet/{id}")
+		public List<Orders> getOrdersPerFleet(@PathVariable("id") String cid){
+			return ordersService.getOrdersPerFleet(cid);
+		}
+		
+		@RequestMapping("/orders/reports/order/{status}")
+		public List<Orders> getOrdersPendingCompleted(@PathVariable("status") String status){
+			return ordersService.getOrdersCompletedPending(status);
+		}
+		
+//		@RequestMapping("/tripexpenses/reports/tripexptotal/{id}")
+//		public int getParticualrTripExpenseTotal(@PathVariable("id") String id) {
+//			return tripExpenseService.getTotalofParticularTripExpense(id);
+//		}
+//		
+//		@RequestMapping("/tripexpenses/reports/tripexpdetails/{id}")
+//		public TripExpense getParticualrTripExpenseTotalDetails(@PathVariable("id") String id) {
+//			return tripExpenseService.getParticularTripExpenseDetails(id);
+//		}
+	
 }
