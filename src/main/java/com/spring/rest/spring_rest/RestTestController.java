@@ -38,6 +38,10 @@ public class RestTestController {
 	private DeliveryService deliveryService;
 	@Autowired 
 	private TripExpenseService tripExpenseService; 
+	@Autowired
+	private NotesService notesService;
+	@Autowired
+	private TaskService taskService;
 
 
 	// CLIENT SERVICE
@@ -360,6 +364,66 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 		
+		//NOTES
+		
+		@RequestMapping("/notes")
+		public List<Notes> getAllNotes() {
+			return notesService.getallNotes();
+		}
+
+		@RequestMapping("/notes/{id}")
+		public ResponseEntity<Notes> getNote(@PathVariable("id") String id) {
+			return new ResponseEntity<Notes>(notesService.getNote(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/notes/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteNoteById(@PathVariable("id") String id) {
+			notesService.deleteNote(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/notes", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addNote(@RequestBody(required = true) Notes note) {
+			notesService.addNote(note);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/notes/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateNote(@RequestBody(required = true) Notes note) {
+			notesService.updateNote(note);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+		
+		//TASKS
+		
+		@RequestMapping("/tasks")
+		public List<Task> getAllTasks() {
+			return taskService.getallTasks();
+		}
+
+		@RequestMapping("/tasks/{id}")
+		public ResponseEntity<Task> getTask(@PathVariable("id") String id) {
+			return new ResponseEntity<Task>(taskService.getTask(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/tasks/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteTaskById(@PathVariable("id") String id) {
+			taskService.deleteTask(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/tasks", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addTask(@RequestBody(required = true) Task task) {
+			taskService.addTask(task);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/tasks/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateTask(@RequestBody(required = true) Task task) {
+			taskService.updateTask(task);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+		
 		//REPORTS STATS
 		@RequestMapping("/fleets/total")
 		public int getFleetCount() {
@@ -409,14 +473,5 @@ public class RestTestController {
 			return ordersService.getOrdersCompletedPending(status);
 		}
 		
-//		@RequestMapping("/tripexpenses/reports/tripexptotal/{id}")
-//		public int getParticualrTripExpenseTotal(@PathVariable("id") String id) {
-//			return tripExpenseService.getTotalofParticularTripExpense(id);
-//		}
-//		
-//		@RequestMapping("/tripexpenses/reports/tripexpdetails/{id}")
-//		public TripExpense getParticualrTripExpenseTotalDetails(@PathVariable("id") String id) {
-//			return tripExpenseService.getParticularTripExpenseDetails(id);
-//		}
 	
 }
