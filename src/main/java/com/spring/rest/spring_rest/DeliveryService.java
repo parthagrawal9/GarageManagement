@@ -1,5 +1,6 @@
 package com.spring.rest.spring_rest;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,6 +23,18 @@ public class DeliveryService {
 	public int getCompletedPendingCount(String status) {
 		return ((Number) em.createQuery("SELECT COUNT(d) FROM Delivery d WHERE d.status = '" + status + "'")
 				.getSingleResult()).intValue();
+	}
+	
+	public ArrayList<Report> getCompletedPendingCount() {
+		ArrayList<Report> l = new ArrayList<Report>();
+		String status = "Completed";
+		int n1 = ((Number)em.createQuery("SELECT COUNT(d) FROM Delivery d WHERE d.status = '" +  status+ "'").getSingleResult()).intValue();
+		Report r1 = new Report("Completed", n1);
+		status = "Pending";
+		int n2 = ((Number)em.createQuery("SELECT COUNT(d) FROM Delivery d WHERE d.status = '" + status + "'").getSingleResult()).intValue();
+		Report r2 = new Report("Pending", n2);
+		l.add(r1);l.add(r2);
+		return l;
 	}
 
 	public Delivery getDelivery(String id) {

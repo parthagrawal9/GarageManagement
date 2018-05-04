@@ -475,6 +475,11 @@ public class RestTestController {
 			return deliveryService.getCompletedPendingCount(status);
 		}
 		
+		@RequestMapping("/staticreports/delivery")
+		public List<Report> getCompletedPendingDeliveryCount() {
+			return deliveryService.getCompletedPendingCount();
+		}
+		
 		@RequestMapping("/orders/kmstravelled")
 		public int getTotalKmsTravelled() {
 			return ordersService.getTotalDistanceCompleted();
