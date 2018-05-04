@@ -40,6 +40,11 @@ public class OrdersService {
 		return results;
 	}
 	
+	public int getOrdersPerMonthCount(Date d1, Date d2) {
+		System.out.println(d1 + "Date : " + d2);
+		return ((Number)em.createQuery("select COUNT(o) from Orders o where o.Order_date BETWEEN '" + d1 + "' AND '" + d2 + "'").getSingleResult()).intValue();
+	}
+	
 	public List<Orders> getOrdersPerClient(String cid) {
 		Query query = em.createQuery("select o from Orders o where o.Cid = '"+cid+"'");
 		@SuppressWarnings("unchecked")
@@ -61,6 +66,13 @@ public class OrdersService {
 		return results;
 	}
 
+	public List<Report> getTotalOrdersPerClient(){
+		Query query = em.createQuery("select o.Cid,COUNT(o.Oid) from Orders o group by o.Cid");
+		@SuppressWarnings("unchecked")
+		List<Report> results = query.getResultList();
+		return results;
+	}
+	
 	@Transactional
 	public void deleteOrder(String id) {
 		em.remove(em.find(Orders.class, id));

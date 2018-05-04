@@ -26,20 +26,22 @@ public class Fleet {
 	private String chasis_no;
 	private Date date_of_purchase;
 	private int price;
+	private String registrationNo;
 	
 	public Fleet(){}
 	
-	public Fleet(String fleetId, String company, int wheels, String modelNo, String chasisNo, Date dateOfPurchase,
-			int fleetPrice) {
-		this.fid = fleetId;
+	public Fleet(String fid, String company, int wheels, String model_no, String chasis_no, Date date_of_purchase,
+			int price, String registrationNo) {
+		this.fid = fid;
 		this.company = company;
 		this.wheels = wheels;
-		this.model_no = modelNo;
-		this.chasis_no = chasisNo;
-		this.date_of_purchase = dateOfPurchase;
-		this.price = fleetPrice;
+		this.model_no = model_no;
+		this.chasis_no = chasis_no;
+		this.date_of_purchase = date_of_purchase;
+		this.price = price;
+		this.registrationNo = registrationNo;
 	}
-	
+
 	public String getFleetId() {
 		return fid;
 	}
@@ -82,4 +84,15 @@ public class Fleet {
 	public void setFleetPrice(int fleetPrice) {
 		this.price = fleetPrice;
 	}
+
+	public String getRegistrationNo() {
+		return registrationNo;
+	}
+
+	public void setRegistrationNo(String registrationNo) {
+		this.registrationNo = registrationNo;
+	}
+	
+	
+	
 }

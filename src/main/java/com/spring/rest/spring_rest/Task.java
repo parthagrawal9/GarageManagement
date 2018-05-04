@@ -13,6 +13,7 @@ public class Task {
 	
 	@Id
 	private String taskId;
+	private String taskName;
 	private String taskData;
 	private int taskStatus;
 	private Date taskAdded;
@@ -21,14 +22,26 @@ public class Task {
 	
 	public Task(){}
 	
-	public Task(String taskId, String taskData, int taskStatus, Date taskAdded, Date taskDeadline, int taskPriority) {
+	public Task(String taskId, String taskName, String taskData, int taskStatus, Date taskAdded, Date taskDeadline,
+			int taskPriority) {
+		super();
 		this.taskId = taskId;
+		this.taskName = taskName;
 		this.taskData = taskData;
 		this.taskStatus = taskStatus;
 		this.taskAdded = taskAdded;
 		this.taskDeadline = taskDeadline;
 		this.taskPriority = taskPriority;
 	}
+	
+	public String getTaskName() {
+		return taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
+	}
+
 	public String getTaskId() {
 		return taskId;
 	}

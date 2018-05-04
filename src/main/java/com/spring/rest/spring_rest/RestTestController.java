@@ -42,7 +42,8 @@ public class RestTestController {
 	private NotesService notesService;
 	@Autowired
 	private TaskService taskService;
-
+	@Autowired
+	private InsuranceService insuranceService;
 
 	// CLIENT SERVICE
 	@RequestMapping("/clients")
@@ -67,7 +68,7 @@ public class RestTestController {
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/clients", method = RequestMethod.PUT)
 	public ResponseEntity<StandardResponse> updateClient(@RequestBody(required = true) Client client) {
 		clientService.updateEmployee(client);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -96,7 +97,7 @@ public class RestTestController {
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/fleets/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/fleets", method = RequestMethod.PUT)
 	public ResponseEntity<StandardResponse> updateFleet(@RequestBody(required = true) Fleet fleet) {
 		fleetService.updateFleet(fleet);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -119,7 +120,7 @@ public class RestTestController {
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/states/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/states", method = RequestMethod.PUT)
 	public ResponseEntity<StandardResponse> updateState(@RequestBody(required = true) State state) {
 		stateService.updateState(state);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -154,7 +155,7 @@ public class RestTestController {
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/drivers/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/drivers", method = RequestMethod.PUT)
 	public ResponseEntity<StandardResponse> updateDriver(@RequestBody(required = true) Driver driver) {
 		driverService.updateDriver(driver);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -183,7 +184,7 @@ public class RestTestController {
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/orders/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/orders", method = RequestMethod.PUT)
 	public ResponseEntity<StandardResponse> updateOrder(@RequestBody(required = true) Orders order) {
 		ordersService.updateOrder(order);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -212,7 +213,7 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/maintenance/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/maintenance", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateMaintenance(@RequestBody(required = true) Maintenance maintenance) {
 			maintenanceService.updateMaintenance(maintenance);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -241,7 +242,7 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/rtotax/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/rtotax", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateRtoTax(@RequestBody(required = true) Rto rtoTax) {
 			rtoTaxService.updateRtoTax(rtoTax);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -270,7 +271,7 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/cities/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/cities", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateCity(@RequestBody(required = true) City city) {
 			cityService.updateCity(city);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -299,7 +300,7 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/distances/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/distances", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateDistance(@RequestBody(required = true) Distance distance) {
 			distanceService.updateD(distance);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -328,7 +329,7 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/deliveries/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/deliveries", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateDelivery(@RequestBody(required = true) Delivery delivery) {
 			deliveryService.updateDelivery(delivery);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -358,7 +359,7 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/tripexpenses/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/tripexpenses", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateTripExpense(@RequestBody(required = true) TripExpense tripExpense) {
 			tripExpenseService.updateTripExpense(tripExpense);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -388,7 +389,7 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/notes/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/notes", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateNote(@RequestBody(required = true) Notes note) {
 			notesService.updateNote(note);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
@@ -418,9 +419,38 @@ public class RestTestController {
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 
-		@RequestMapping(value = "/tasks/{id}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/tasks", method = RequestMethod.PUT)
 		public ResponseEntity<StandardResponse> updateTask(@RequestBody(required = true) Task task) {
 			taskService.updateTask(task);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+		
+		//INSURANCE
+		@RequestMapping("/insurance")
+		public List<Insurance> getAllInsurance() {
+			return insuranceService.getallInsurance();
+		}
+
+		@RequestMapping("/insurance/{id}")
+		public ResponseEntity<Insurance> getInsurance(@PathVariable("id") String id) {
+			return new ResponseEntity<Insurance>(insuranceService.getInsurance(id), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/insurance/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<StandardResponse> deleteInsuranceById(@PathVariable("id") String id) {
+			insuranceService.deleteInsurance(id);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/insurance", method = RequestMethod.POST)
+		public ResponseEntity<StandardResponse> addInsurance(@RequestBody(required = true) Insurance insurance) {
+			insuranceService.addInsurance(insurance);
+			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
+		}
+
+		@RequestMapping(value = "/insurance", method = RequestMethod.PUT)
+		public ResponseEntity<StandardResponse> updateInsurance(@RequestBody(required = true) Insurance insurance) {
+			insuranceService.updateInsurance(insurance);
 			return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 		}
 		
@@ -440,7 +470,7 @@ public class RestTestController {
 			return driverService.getDriverCount();
 		}
 		
-		@RequestMapping("/deliveries/{status}")
+		@RequestMapping("/deliver/{status}")
 		public int getCompletedPendingDeliveryCount(@PathVariable("status") String status) {
 			return deliveryService.getCompletedPendingCount(status);
 		}
@@ -448,6 +478,19 @@ public class RestTestController {
 		@RequestMapping("/orders/kmstravelled")
 		public int getTotalKmsTravelled() {
 			return ordersService.getTotalDistanceCompleted();
+		}
+		
+		@RequestMapping("/orders/reports/monthcount/{date1}/{date2}")
+		public int getOrdersPerMonthCount(@PathVariable("date1") Date d1,@PathVariable("date2") Date d2 ) throws ParseException {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			sdf.format(d1);sdf.format(d2);
+			return ordersService.getOrdersPerMonthCount(d1, d2);
+		}
+		
+		@RequestMapping("/staticreports/orderperclient")
+		public List<Report> getOrderCountPerClient() {
+			return ordersService.getTotalOrdersPerClient();
 		}
 		
 		//MAIN REPORTS
@@ -459,7 +502,7 @@ public class RestTestController {
 		}
 		
 		@RequestMapping("/orders/reports/client/{id}")
-		public List<Orders> getOrdersPerMonth(@PathVariable("id") String cid){
+		public List<Orders> getOrdersPerClient(@PathVariable("id") String cid){
 			return ordersService.getOrdersPerClient(cid);
 		}
 		
