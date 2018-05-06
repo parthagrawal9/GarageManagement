@@ -36,6 +36,7 @@ public class DeliveryService {
 		l.add(r1);l.add(r2);
 		return l;
 	}
+	
 
 	public Delivery getDelivery(String id) {
 		return em.find(Delivery.class, id);
