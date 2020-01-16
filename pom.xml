@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.parth</groupId>
-	<artifactId>TransportRestTest</artifactId>
+	<artifactId>GarageManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -18,6 +18,17 @@
 	</parent>
 
 	<dependencies>
+	
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.3</version>
+    </dependency>
+	
+	<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
 	
 	<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -57,9 +68,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
+			<version>42.2.6</version>
 		</dependency>
 
 		<dependency>
@@ -67,6 +78,16 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>1.5.10.RELEASE</version>
 		</dependency>
+		
+<!-- https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure -->
+<dependency>
+    <groupId>org.springframework.security.oauth.boot</groupId>
+    <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+    <version>2.1.11.RELEASE</version>
+</dependency>
+
+
+		
 
 	</dependencies>
 	<build>
