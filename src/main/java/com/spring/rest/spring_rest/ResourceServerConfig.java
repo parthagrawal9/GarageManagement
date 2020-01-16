@@ -16,6 +16,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 //		super.configure(http);
 		http.authorizeRequests()
 			.antMatchers("/").permitAll()
+			.antMatchers("/health").permitAll()
 			.antMatchers("/api").authenticated();
 	}	
 }
