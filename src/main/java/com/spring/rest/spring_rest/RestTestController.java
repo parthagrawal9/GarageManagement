@@ -30,8 +30,9 @@ public class RestTestController {
 	
 	@RequestMapping(value = "/api/adduser", method = RequestMethod.POST)
 	public ResponseEntity<StandardResponse> addLogin(@RequestBody(required = true) Login login) {
-		SHA512 sha = new SHA512();
-		login.setUserPassword(sha.getSHA512(login.getUserPassword()));
+//		MD5 md = new MD5();
+//		login.setUserPassword(md.getMd5(login.getUserPassword()));
+		login.setUserPassword(login.getUserPassword());
 		loginService.addLogin(login);
 		return new ResponseEntity<StandardResponse>(new StandardResponse("OK"), HttpStatus.OK);
 	}
@@ -42,7 +43,7 @@ public class RestTestController {
 	}
 	
 	@RequestMapping("/api/logins/{username}")
-	public ResponseEntity<Login> getLogin(@PathVariable("username") Long username) {
+	public ResponseEntity<Login> getLogin(@PathVariable("username") String username) {
 		return new ResponseEntity<Login>(loginService.getLogin(username), HttpStatus.OK);
 	}
 	

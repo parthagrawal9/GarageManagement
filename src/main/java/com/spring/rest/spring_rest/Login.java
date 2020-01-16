@@ -17,8 +17,6 @@ public class Login {
 	protected static final String FIND_ALL_LOGINS = "find_all_logins";
 	
 	@Id
-	@GeneratedValue
-	private Long userId;
 	private String userName;
 	private String userPassword;
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)

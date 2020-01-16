@@ -36,6 +36,9 @@ public class App
 			
 			@Override
 			public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+				if(repo.count() == 0){
+					repo.save(new Login("user","user",Arrays.asList(new Role("USER"),new Role("ACTUATOR"))));
+				}
 				return new CustomUserDetails(repo.findByUserName(s));
 			}
 		});

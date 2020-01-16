@@ -7,14 +7,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.commons.codec.digest.Sha2Crypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
 
-	@PersistenceContext
-	private EntityManager em;
+	private LoginService loginService;
 	private String userName;
 	private String userPassword;
 	Collection<? extends GrantedAuthority> authorities; 
@@ -37,12 +38,22 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public String getPassword() {
-//		String hash = em.createQuery("SELECT user_password(l) FROM Login l WHERE l.user_name = '" +  this.getUsername());
-//		Report r1 = new Report("Completed", n1);
-//		status = "Pending";
-//		int n2 = ((Number)em.createQuery("SELECT COUNT(d) FROM Delivery d WHERE d.status = '" + status + "'").getSingleResult()).intValue();
-//		Report r2 = new Report("Pending", n2);
-//		l.add(r1);l.add(r2);
+//		if(this.getUsername().equals("user")){
+//			return userPassword;
+//		}
+//		loginService = new LoginService();
+//		Login user = loginService.getLogin(userName);
+//		String userHash = user.getUserPassword();
+//		
+//		MD5 md = new MD5();
+//		String newHash = md.getMd5(userPassword);
+//		
+//		if(newHash.equals(userHash)){
+//			return userHash;
+//		}
+//		else{
+//			return "";
+//		}
 		return userPassword;
 	}
 

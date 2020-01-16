@@ -23,10 +23,6 @@ public class LoginService {
 		return em.find(Login.class, username);
 	}
 	
-	public Login getLogin(Long username){
-		return em.find(Login.class, username);
-	}
-	
 	@Transactional
 	public void deleteLogin(String username) {
 		em.remove(em.find(Login.class, username));
