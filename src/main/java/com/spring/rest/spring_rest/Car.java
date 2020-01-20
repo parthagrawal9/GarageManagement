@@ -14,15 +14,26 @@ public class Car {
 	private String carId;
 	private String carModel;
 	private String carBrand;
+	private String carNumber;
+	private String carKMs;
+	private String carChasisNo;
+	private String carEngineNo;
 	
 	public Car(){}
-	
-	public Car(String carId, String carModel, String carBrand) {
+
+	public Car(String carId, String carModel, String carBrand, String carNumber, String carKMs, String carChasisNo,
+			String carEngineNo) {
 		super();
 		this.carId = carId;
 		this.carModel = carModel;
 		this.carBrand = carBrand;
+		this.carNumber = carNumber;
+		this.carKMs = carKMs;
+		this.carChasisNo = carChasisNo;
+		this.carEngineNo = carEngineNo;
 	}
+
+
 
 	public String getCarId() {
 		return carId;
@@ -47,5 +58,56 @@ public class Car {
 	public void setCarBrand(String carBrand) {
 		this.carBrand = carBrand;
 	}
+
+
+
+	public String getCarNumber() {
+		return carNumber;
+	}
+
+
+
+	public void setCarNumber(String carNumber) {
+		this.carNumber = carNumber;
+	}
+
+
+
+	public String getCarKMs() {
+		return carKMs;
+	}
+
+
+
+	public void setCarKMs(String carKMs) {
+		this.carKMs = carKMs;
+	}
+
+
+
+	public String getCarChasisNo() {
+		return carChasisNo;
+	}
+
+
+
+	public void setCarChasisNo(String carChasisNo) {
+		this.carChasisNo = carChasisNo;
+	}
+
+
+
+	public String getCarEngineNo() {
+		return carEngineNo;
+	}
+
+
+
+	public void setCarEngineNo(String carEngineNo) {
+		this.carEngineNo = carEngineNo;
+	}
+	
+	
+	
 	
 }
