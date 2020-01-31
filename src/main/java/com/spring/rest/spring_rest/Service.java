@@ -1,6 +1,7 @@
 package com.spring.rest.spring_rest;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -11,24 +12,25 @@ public class Service {
 	protected static final String FIND_ALL_SERVICES = "find_all_services"; 
 	
 	@Id
-	private String serviceId;
+	@GeneratedValue
+	private long serviceId;
 	private String serviceName;
 	private String serviceDescription;
 	
 	public Service(){}
 
-	public Service(String serviceId, String serviceName, String serviceDescription) {
+	public Service(long serviceId, String serviceName, String serviceDescription) {
 		super();
 		this.serviceId = serviceId;
 		this.serviceName = serviceName;
 		this.serviceDescription = serviceDescription;
 	}
 
-	public String getServiceId() {
+	public long getServiceId() {
 		return serviceId;
 	}
 
-	public void setServiceId(String serviceId) {
+	public void setServiceId(long serviceId) {
 		this.serviceId = serviceId;
 	}
 

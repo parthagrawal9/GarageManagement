@@ -21,12 +21,12 @@ public class ExpenseService {
 	}
 	
 
-	public Expense getExpense(String id) {
+	public Expense getExpense(long id) {
 		return em.find(Expense.class, id);
 	}
 
 	@Transactional
-	public void deleteExpense(String id) {
+	public void deleteExpense(long id) {
 		em.remove(em.find(Expense.class, id));
 	}
 

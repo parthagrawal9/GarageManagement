@@ -21,12 +21,12 @@ public class WorkerService {
 		return results;
 	}
 	
-	public Worker getWorker(String id) {
+	public Worker getWorker(long id) {
 		return em.find(Worker.class, id);
 	}
 
 	@Transactional
-	public void deleteWorker(String id) {
+	public void deleteWorker(long id) {
 		em.remove(em.find(Worker.class, id));
 	}
 

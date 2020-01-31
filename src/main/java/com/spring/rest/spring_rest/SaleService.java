@@ -20,12 +20,12 @@ public class SaleService {
 		return results;
 	}
 	
-	public Sale getSale(String id) {
+	public Sale getSale(long id) {
 		return em.find(Sale.class, id);
 	}
 
 	@Transactional
-	public void deleteSale(String id) {
+	public void deleteSale(long id) {
 		em.remove(em.find(Sale.class, id));
 	}
 

@@ -1,6 +1,7 @@
 package com.spring.rest.spring_rest;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -11,7 +12,8 @@ public class Address {
 	protected static final String FIND_ALL_ADDRESSES = "find_all_addresses";
 
 	@Id
-	private String addressId;
+	@GeneratedValue
+	private long addressId;
 	private String addressLine;
 	private String addressCity;
 	private String addressState;
@@ -19,7 +21,7 @@ public class Address {
 	
 	public Address(){}
 	
-	public Address(String addressId, String addressLine, String addressCity, String addressState,
+	public Address(long addressId, String addressLine, String addressCity, String addressState,
 			String addressCountry) {
 		super();
 		this.addressId = addressId;
@@ -29,11 +31,11 @@ public class Address {
 		this.addressCountry = addressCountry;
 	}
 
-	public String getAddressId() {
+	public long getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(String addressId) {
+	public void setAddressId(long addressId) {
 		this.addressId = addressId;
 	}
 

@@ -1,6 +1,7 @@
 package com.spring.rest.spring_rest;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -11,7 +12,8 @@ public class Vendor {
 	protected static final String FIND_ALL_VENDORS = "find_all_vendors"; 
 	
 	@Id
-	private String vendorId;
+	@GeneratedValue
+	private long vendorId;
 	private String vendorName;
 	private String vendorPhone;
 	private String vendorEmail;
@@ -20,7 +22,7 @@ public class Vendor {
 	
 	public Vendor(){}
 	
-	public Vendor(String vendorId, String vendorName, String vendorPhone, String vendorEmail, String vendorAddress,
+	public Vendor(long vendorId, String vendorName, String vendorPhone, String vendorEmail, String vendorAddress,
 			String vendorDescription) {
 		super();
 		this.vendorId = vendorId;
@@ -31,11 +33,11 @@ public class Vendor {
 		this.vendorDescription = vendorDescription;
 	}
 
-	public String getVendorId() {
+	public long getVendorId() {
 		return vendorId;
 	}
 
-	public void setVendorId(String vendorId) {
+	public void setVendorId(long vendorId) {
 		this.vendorId = vendorId;
 	}
 
@@ -79,3 +81,4 @@ public class Vendor {
 		this.vendorDescription = vendorDescription;
 	}
 }
+//insert into vendor values(1,'Bengaluru','Oil Dealer','vendor1@gmail.com','Car Oil Dealers','8987657895');

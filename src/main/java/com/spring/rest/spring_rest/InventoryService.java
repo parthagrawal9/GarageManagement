@@ -20,12 +20,12 @@ public class InventoryService {
 	}
 	
 
-	public Inventory getInventory(String id) {
+	public Inventory getInventory(long id) {
 		return em.find(Inventory.class, id);
 	}
 
 	@Transactional
-	public void deleteInventory(String id) {
+	public void deleteInventory(long id) {
 		em.remove(em.find(Inventory.class, id));
 	}
 

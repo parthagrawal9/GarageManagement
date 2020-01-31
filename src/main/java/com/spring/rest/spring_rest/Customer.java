@@ -1,6 +1,7 @@
 package com.spring.rest.spring_rest;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -10,17 +11,18 @@ public class Customer {
     
 	protected static final String FIND_ALL_CUSTOMERS = "find_all_customers";   
 	    
-	@Id                                                                  
-	private String cutomerId;     
+	@Id    
+	@GeneratedValue
+	private long cutomerId;     
 	private String customerName;                                            
 	private String customerPhone;
 	private String customerAddressId;
-	private String customerCarId;
+	private long customerCarId;
 	
 	public Customer(){}
 
-	public Customer(String cutomerId, String customerName, String customerPhone, String customerAddressId,
-			String customerCarId) {
+	public Customer(long cutomerId, String customerName, String customerPhone, String customerAddressId,
+			long customerCarId) {
 		super();
 		this.cutomerId = cutomerId;
 		this.customerName = customerName;
@@ -29,11 +31,11 @@ public class Customer {
 		this.customerCarId = customerCarId;
 	}
 
-	public String getCutomerId() {
+	public long getCutomerId() {
 		return cutomerId;
 	}
 
-	public void setCutomerId(String cutomerId) {
+	public void setCutomerId(long cutomerId) {
 		this.cutomerId = cutomerId;
 	}
 
@@ -61,11 +63,11 @@ public class Customer {
 		this.customerAddressId = customerAddressId;
 	}
 
-	public String getCustomerCarId() {
+	public long getCustomerCarId() {
 		return customerCarId;
 	}
 
-	public void setCustomerCarId(String customerCarId) {
+	public void setCustomerCarId(long customerCarId) {
 		this.customerCarId = customerCarId;
 	}
 }

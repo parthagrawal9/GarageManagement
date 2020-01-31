@@ -20,12 +20,12 @@ public class ServiceService {
 		return results;
 	}
 	
-	public Service getService(String id) {
+	public Service getService(long id) {
 		return em.find(Service.class, id);
 	}
 
 	@Transactional
-	public void deleteService(String id) {
+	public void deleteService(long id) {
 		em.remove(em.find(Service.class, id));
 	}
 

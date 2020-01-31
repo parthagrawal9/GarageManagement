@@ -21,12 +21,12 @@ public class CustomerService {
 		return results;
 	}
 
-	public Customer getCustomer(String id) {
+	public Customer getCustomer(long id) {
 		return em.find(Customer.class, id);
 	}
 
 	@Transactional
-	public void deleteCustomer(String id) {
+	public void deleteCustomer(long id) {
 		em.remove(em.find(Customer.class, id));
 	}
 

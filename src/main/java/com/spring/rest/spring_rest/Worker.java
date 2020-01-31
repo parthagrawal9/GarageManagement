@@ -3,6 +3,7 @@ package com.spring.rest.spring_rest;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -13,7 +14,8 @@ public class Worker {
 	protected static final String FIND_ALL_WORKERS = "find_all_workers"; 
 	
 	@Id
-	private String workerId;
+	@GeneratedValue
+	private long workerId;
 	private String workerName;
 	private String workerPhone;
 	private String workerEmail;
@@ -22,7 +24,7 @@ public class Worker {
 	
 	public Worker(){}
 	
-	public Worker(String workerId, String workerName, String workerPhone, String workerEmail, double workerSalary,
+	public Worker(long workerId, String workerName, String workerPhone, String workerEmail, double workerSalary,
 			Date workerJoiningDate) {
 		super();
 		this.workerId = workerId;
@@ -33,11 +35,11 @@ public class Worker {
 		this.workerJoiningDate = workerJoiningDate;
 	}
 
-	public String getWorkerId() {
+	public long getWorkerId() {
 		return workerId;
 	}
 
-	public void setWorkerId(String workerId) {
+	public void setWorkerId(long workerId) {
 		this.workerId = workerId;
 	}
 

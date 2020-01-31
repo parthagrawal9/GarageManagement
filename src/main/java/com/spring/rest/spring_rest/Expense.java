@@ -3,6 +3,7 @@ package com.spring.rest.spring_rest;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -13,7 +14,8 @@ public class Expense {
 	protected static final String FIND_ALL_EXPENSES = "find_all_expenses";
 	
 	@Id
-	private String expenseId;
+	@GeneratedValue
+	private long expenseId;
 	private String expenseTitle;
 	private String expenseDesc;
 	private String expenseType;
@@ -22,7 +24,7 @@ public class Expense {
 	
 	public Expense(){}
 	
-	public Expense(String expenseId, String expenseTitle, String expenseDesc, float expenseAmount, Date expenseDate, String expenseType) {
+	public Expense(long expenseId, String expenseTitle, String expenseDesc, float expenseAmount, Date expenseDate, String expenseType) {
 		super();
 		this.expenseId = expenseId;
 		this.expenseTitle = expenseTitle;
@@ -31,10 +33,10 @@ public class Expense {
 		this.expenseDate = expenseDate;
 		this.expenseType = expenseType;
 	}
-	public String getExpenseId() {
+	public long getExpenseId() {
 		return expenseId;
 	}
-	public void setExpenseId(String expenseId) {
+	public void setExpenseId(long expenseId) {
 		this.expenseId = expenseId;
 	}
 	public String getExpenseTitle() {

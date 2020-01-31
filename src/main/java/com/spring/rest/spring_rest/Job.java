@@ -3,17 +3,27 @@ package com.spring.rest.spring_rest;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
+import org.hibernate.annotations.NamedQueries;
+
 @Entity
-@NamedQuery(name = Job.FIND_ALL_JOBS, query = "select j from Job j")
+@NamedQueries({
+	@org.hibernate.annotations.NamedQuery(name = Job.FIND_ALL_JOBS, query = "select j from Job j"),
+	@org.hibernate.annotations.NamedQuery(name = Job.FIND_ALL_COMPLETED_JOBS, query = "select j from Job j WHERE j.status='Completed'"),
+	@org.hibernate.annotations.NamedQuery(name = Job.FIND_ALL_PENDING_JOBS, query = "select j from Job j WHERE j.status='Pending'")
+})
 public class Job {
 	
-	protected static final String FIND_ALL_JOBS = "find_all_jobs"; 
+	protected static final String FIND_ALL_JOBS = "find_all_jobs";
+	protected static final String FIND_ALL_COMPLETED_JOBS = "find_all_completed_jobs";
+	protected static final String FIND_ALL_PENDING_JOBS = "find_all_pending_jobs";
 	
 	@Id
-	private String jobId;
+	@GeneratedValue
+	private long jobId;
 	private Date jobStartDate;
 	private Date jobEndDate;
 	private String carNo;
@@ -31,16 +41,16 @@ public class Job {
 	private String jobDescription;
 	private String status;
 	private float bill;
-	private String workerId;
+	private long workerId;
 	
 	public Job(){
 		
 	}
 
-	public Job(String jobId, Date jobStartDate, Date jobEndDate, String carNo, String carBrand, String carModel,
+	public Job(long jobId, Date jobStartDate, Date jobEndDate, String carNo, String carBrand, String carModel,
 			String carFuelType, float carKM, String carChasisNo, String carEngineNo, int carFuel, String customerName,
 			String customerPhone, String customerEmail, String customerAddress, String jobDescription, String status,
-			float bill, String workerId) {
+			float bill, long workerId) {
 		super();
 		this.jobId = jobId;
 		this.jobStartDate = jobStartDate;
@@ -63,11 +73,11 @@ public class Job {
 		this.workerId = workerId;
 	}
 
-	public String getJobId() {
+	public long getJobId() {
 		return jobId;
 	}
 
-	public void setJobId(String jobId) {
+	public void setJobId(long jobId) {
 		this.jobId = jobId;
 	}
 
@@ -207,11 +217,13 @@ public class Job {
 		this.bill = bill;
 	}
 	
-	public String getWorkerId(){
+	public long getWorkerId(){
 		return workerId;
 	}
 	
-	public void setWorkerId(String workerId){
+	public void setWorkerId(long workerId){
 		this.workerId = workerId;
 	}
 }
+
+//insert into job values (1,2000,'Honda','Chasis_1','Engine_1',20,'Petrol',50000,'Civic','KA 01 AA 1234', 'Taverekere Main Road','customer1@gmail.com','Customer 1','9999998888','This is temp job','2019-10-10','2019-11-10','Pending',20);

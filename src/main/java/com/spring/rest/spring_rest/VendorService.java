@@ -20,12 +20,12 @@ public class VendorService {
 		return results;
 	}
 
-	public Vendor getVendor(String id) {
+	public Vendor getVendor(long id) {
 		return em.find(Vendor.class, id);
 	}
 
 	@Transactional
-	public void deleteVendor(String id) {
+	public void deleteVendor(long id) {
 		em.remove(em.find(Vendor.class, id));
 	}
 

@@ -1,6 +1,7 @@
 package com.spring.rest.spring_rest;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -11,7 +12,8 @@ public class Car {
 	protected static final String FIND_ALL_CARS = "find_all_cars";
 	
 	@Id
-	private String carId;
+	@GeneratedValue
+	private long carId;
 	private String carModel;
 	private String carBrand;
 	private String carNumber;
@@ -21,7 +23,7 @@ public class Car {
 	
 	public Car(){}
 
-	public Car(String carId, String carModel, String carBrand, String carNumber, String carKMs, String carChasisNo,
+	public Car(long carId, String carModel, String carBrand, String carNumber, String carKMs, String carChasisNo,
 			String carEngineNo) {
 		super();
 		this.carId = carId;
@@ -35,11 +37,11 @@ public class Car {
 
 
 
-	public String getCarId() {
+	public long getCarId() {
 		return carId;
 	}
 
-	public void setCarId(String carId) {
+	public void setCarId(long carId) {
 		this.carId = carId;
 	}
 
