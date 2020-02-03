@@ -51,6 +51,13 @@ public class RestTestController {
 	}
 	
 	//AUTH TEST
+	
+	@GetMapping(produces = "application/json")
+	@RequestMapping({ "/validateLogin" })
+	public User validateLogin() {
+		return new User("User successfully authenticated");
+	}
+	
 	@RequestMapping("/")
 	public String home(){
 		return "Hello";
