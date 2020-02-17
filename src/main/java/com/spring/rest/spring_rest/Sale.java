@@ -20,6 +20,7 @@ public class Sale {
 	@Id
 	@GeneratedValue
 	private long saleId;
+	private boolean billed;
 	private String customerName;
 	private String customerPhone;
 	private String customerEmail;
@@ -32,10 +33,11 @@ public class Sale {
 	
 	public Sale(){}
 	
-	public Sale(long saleId, String customerName, String customerPhone, String customerEmail, Date saleDate,
+	public Sale(long saleId,boolean billed, String customerName, String customerPhone, String customerEmail, Date saleDate,
 			float saleTotal, float discount, long jobId, List<SaleData> saleData) {
 		super();
 		this.saleId = saleId;
+		this.billed = billed;
 		this.customerName = customerName;
 		this.customerPhone = customerPhone;
 		this.customerEmail = customerEmail;
@@ -46,6 +48,14 @@ public class Sale {
 		this.saleData = saleData;
 	}
 
+
+	public boolean isBilled() {
+		return billed;
+	}
+
+	public void setBilled(boolean billed) {
+		this.billed = billed;
+	}
 
 	public long getSaleId() {
 		return saleId;

@@ -14,7 +14,7 @@ public class SaleData {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private int qty;
+	private int qty;	
 	private long inventoryId;
 	
 	public SaleData(){};
